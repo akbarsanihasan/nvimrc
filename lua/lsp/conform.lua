@@ -89,9 +89,9 @@ return {
 			php = { "php_cs_fixer" },
 			lua = { "stylua" },
 
-			sh = { "beautysh" },
-			bash = { "beautysh" },
-			zsh = { "beautysh" },
+			sh = { "shfmt" },
+			bash = { "shfmt" },
+			zsh = { "shfmt" },
 
 			html = { "prettier" },
 			markdown = { "prettier" },

@@ -26,12 +26,14 @@ return {
 
 				"ts_ls",
 				"eslint",
-				"intelephense",
 				"clangd",
 				"rust_analyzer",
 				"gopls",
-				"phpactor",
 				"lua_ls",
+				"phpactor",
+
+				"htmx",
+				"tailwindcss",
 			},
 		})
 

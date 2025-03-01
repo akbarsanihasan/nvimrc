@@ -68,7 +68,6 @@ return {
 					"rg",
 					"--files",
 					"--hidden",
-					"--no-ignore",
 					"--glob",
 					"!**/.git/*",
 					"--glob",

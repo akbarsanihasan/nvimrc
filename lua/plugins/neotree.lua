@@ -17,6 +17,29 @@ return {
 		vim.g.loaded_netrw = 1
 	end,
 	opts = {
+		sort_function = function(a, b)
+			if a.type == b.type then
+				if a.ext == nil and b.ext == nil then
+					return a.path < b.path
+				end
+
+				if a.ext == nil then
+					return false
+				end
+
+				if b.ext == nil then
+					return true
+				end
+
+				if a.ext == b.ext then
+					return a.path < b.path
+				end
+
+				return a.ext < b.ext
+			end
+
+			return a.type < b.type
+		end,
 		default_component_configs = {
 			indent = {
 				with_expanders = true,
@@ -45,7 +68,7 @@ return {
 			},
 		},
 		window = {
-			width = 35,
+			position = "current",
 			mappings = {
 				["t"] = {
 					"toggle_node",
