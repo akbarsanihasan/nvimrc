@@ -34,13 +34,6 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local typescript_tools = require("typescript-tools")
 
-		local capabilities = vim.tbl_deep_extend(
-			"force",
-			{},
-			vim.lsp.protocol.make_client_capabilities(),
-			cmp_nvim_lsp.default_capabilities()
-		)
-
 		local table_includes = function(table, value)
 			for _, v in pairs(table) do
 				if v == value then
@@ -49,6 +42,13 @@ return {
 			end
 			return false
 		end
+
+		local capabilities = vim.tbl_deep_extend(
+			"force",
+			{},
+			vim.lsp.protocol.make_client_capabilities(),
+			cmp_nvim_lsp.default_capabilities()
+		)
 
 		local on_attach = function(_, bufnr)
 			local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -96,6 +96,7 @@ return {
 							"vue",
 							"htmlangular",
 							"htmlangular",
+							"php",
 							"blade",
 						},
 					})
@@ -124,6 +125,7 @@ return {
 
 		typescript_tools.setup({
 			capabilities = capabilities,
+			single_file_support = true,
 			on_attach = function()
 				on_attach()
 				vim.keymap.set("n", "<leader>tsoi", ":TSToolsOrganizeImport<CR>", { noremap = true, silent = true })

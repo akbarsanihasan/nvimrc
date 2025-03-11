@@ -44,7 +44,7 @@ return {
 				"blade-formatter",
 				"php_cs_fixer",
 				"stylua",
-				"beautysh",
+				"shfmt",
 				"clang-format",
 				"shellcheck",
 			},
