@@ -20,18 +20,17 @@ return {
 		mason_lspconfig.setup({
 			automatic_installation = true,
 			ensure_installed = {
+				"clangd",
+				"gopls",
+				"rust_analyzer",
+				"phpactor",
+				"ts_ls",
+				"eslint",
+				"lua_ls",
+
 				"html",
 				"cssls",
 				"emmet_ls",
-
-				"ts_ls",
-				"eslint",
-				"clangd",
-				"rust_analyzer",
-				"gopls",
-				"lua_ls",
-				"phpactor",
-
 				"htmx",
 				"tailwindcss",
 			},
@@ -40,13 +39,13 @@ return {
 		mason_null_ls.setup({
 			automatic_installation = true,
 			ensure_installed = {
-				"prettier",
-				"blade-formatter",
+				"clang-format",
 				"php_cs_fixer",
+				"blade-formatter",
+				"prettier",
 				"stylua",
 				"shfmt",
-				"clang-format",
-				"shellcheck",
+				"bashls",
 			},
 		})
 	end,

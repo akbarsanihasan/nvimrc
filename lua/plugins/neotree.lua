@@ -77,9 +77,12 @@ return {
 				["<tab>"] = "open",
 			},
 		},
+		buffer = {
+			group_empty_dirs = false,
+		},
 		filesystem = {
 			hijack_netrw_behavior = "open_current",
-			group_empty_dirs = true,
+			group_empty_dirs = false,
 			use_libuv_file_watcher = false,
 			follow_current_file = {
 				enabled = true,
