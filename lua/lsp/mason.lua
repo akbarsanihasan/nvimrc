@@ -45,7 +45,6 @@ return {
 				"prettier",
 				"stylua",
 				"shfmt",
-				"bashls",
 			},
 		})
 	end,
