@@ -12,9 +12,21 @@ return {
 			{ "<leader>pf", builtin.git_files, silent = true, noremap = true },
 			{ "<leader>ps", builtin.live_grep, silent = true, noremap = true },
 			{
-				"<leader>h",
+				"<leader>ph",
 				function()
-					builtin.find_files({ hidden = true })
+					builtin.find_files({
+						find_command = {
+							"rg",
+							"--files",
+							"--hidden",
+							"--glob",
+							"!**/.git/*",
+							"--glob",
+							"!**/vendor/*",
+							"--glob",
+							"!**node_modules/*",
+						},
+					})
 				end,
 				silent = true,
 				noremap = true,
@@ -62,19 +74,6 @@ return {
 		pickers = {
 			live_grep = {
 				hidden = true,
-			},
-			find_files = {
-				find_command = {
-					"rg",
-					"--files",
-					"--hidden",
-					"--glob",
-					"!**/.git/*",
-					"--glob",
-					"!**/vendor/*",
-					"--glob",
-					"!**node_modules/*",
-				},
 			},
 		},
 	},
