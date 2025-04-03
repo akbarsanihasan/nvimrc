@@ -18,7 +18,6 @@ return {
 			local opts = { silent = true, noremap = true }
 
 			vim.keymap.set("n", "<leader>ga", ":Git<CR>", opts)
-			vim.keymap.set("n", "<leader>gp", ":Git push<CR>", opts)
 			vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", opts)
 			vim.keymap.set("n", "gf", "diffget //2<CR>", opts)
 			vim.keymap.set("n", "gj", "diffget //3<CR>", opts)
