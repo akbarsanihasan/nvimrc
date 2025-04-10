@@ -1,13 +1,7 @@
 return {
-	"williamboman/mason.nvim",
-	lazy = true,
-	config = function()
-		local mason = require("mason")
-		local mason_lspconfig = require("mason-lspconfig")
-		local mason_null_ls = require("mason-null-ls")
-
-		mason.setup({
-			max_concurrent_installers = #vim.loop.cpu_info() / 2,
+	{
+		"williamboman/mason.nvim",
+		opts = {
 			ui = {
 				icons = {
 					package_installed = "✓",
@@ -15,15 +9,22 @@ return {
 					package_uninstalled = "✗",
 				},
 			},
-		})
+		},
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+		opts = function()
+			local opts = {}
 
-		mason_lspconfig.setup({
-			automatic_installation = true,
-			ensure_installed = {
-				"clangd",
+			opts.automatic_installation = true
+			opts.ensure_installed = {
 				"gopls",
 				"rust_analyzer",
 				"phpactor",
+				"intelephense",
 				"ts_ls",
 				"eslint",
 				"lua_ls",
@@ -33,19 +34,25 @@ return {
 				"emmet_ls",
 				"htmx",
 				"tailwindcss",
-			},
-		})
+			}
 
-		mason_null_ls.setup({
+			return opts
+		end,
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
+		},
+		opts = {
 			automatic_installation = true,
 			ensure_installed = {
-				"clang-format",
-				"php_cs_fixer",
-				"blade-formatter",
 				"prettier",
+				"php-cs-fixer",
 				"stylua",
 				"shfmt",
 			},
-		})
-	end,
+		},
+	},
 }

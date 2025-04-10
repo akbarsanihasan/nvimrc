@@ -2,10 +2,13 @@ return {
 	-- snippet
 	"L3MON4D3/LuaSnip",
 	dependencies = {
+		"hrsh7th/nvim-cmp",
 		"rafamadriz/friendly-snippets",
 	},
 	build = "make install_jsregexp",
 	config = function()
-		require("luasnip.loaders.from_vscode").lazy_load()
+		local snippet_loader = require("luasnip.loaders.from_vscode")
+
+		snippet_loader.lazy_load()
 	end,
 }

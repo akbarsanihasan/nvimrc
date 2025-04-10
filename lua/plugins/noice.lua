@@ -4,7 +4,6 @@ return {
 		"MunifTanjim/nui.nvim",
 		"j-hui/fidget.nvim",
 	},
-	lazy = false,
 	opts = {
 		lsp = {
 			override = {

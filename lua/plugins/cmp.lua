@@ -5,13 +5,11 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"saadparwaiz1/cmp_luasnip",
-		"roobert/tailwindcss-colorizer-cmp.nvim",
 	},
 	event = { "InsertEnter", "CmdlineEnter" },
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		local tailwind_colorizer = require("tailwindcss-colorizer-cmp")
 		local CMP_KINDS = {
 			Text = "󰉿",
 			Method = "󰆧",
@@ -65,15 +63,11 @@ return {
 				["<Down>"] = cmp.mapping.select_next_item({ behavior = "select" }),
 			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
+				{ name = "nvim_lsp" },
 				{ name = "path" },
 				{ name = "buffer" },
 			}),
-		})
-
-		tailwind_colorizer.setup({
-			color_square_width = 2,
 		})
 	end,
 }
