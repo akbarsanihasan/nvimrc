@@ -24,7 +24,6 @@ return {
 				"gopls",
 				"rust_analyzer",
 				"phpactor",
-				"intelephense",
 				"ts_ls",
 				"eslint",
 				"lua_ls",
