@@ -28,10 +28,9 @@ return {
 				"eslint",
 				"lua_ls",
 
+				"htmx",
 				"html",
 				"cssls",
-				"emmet_ls",
-				"htmx",
 				"tailwindcss",
 			}
 

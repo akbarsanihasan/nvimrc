@@ -14,14 +14,14 @@ M.require_all = function(path, callback)
 	local modules = {}
 
 	for _, file in ipairs(vim.fn.globpath(vim.fn.stdpath("config") .. "/lua/" .. path, "*.lua", false, true)) do
-		local file = file:match("lua/(.-)%.lua$")
-		local key = file:match("[^/]+$")
-		local content = require(file:gsub("/", "."))
+		local file_path = file:match("lua/(.-)%.lua$")
+		local key = file_path:match("[^/]+$")
+		local module = require(file_path:gsub("/", "."))
 
 		if not callback then
-			modules[key] = content
+			modules[key] = module
 		else
-			return callback(content, key, file)
+			return callback(module, key, file_path)
 		end
 	end
 
