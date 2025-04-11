@@ -16,6 +16,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		}, true, {})
 
 		vim.fn.getchar()
+
+        vim.fn.system({ "rm", "-rf", lazypath })
+
 		os.exit(1)
 	end
 

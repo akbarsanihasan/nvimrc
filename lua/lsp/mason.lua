@@ -22,10 +22,10 @@ return {
 			opts.automatic_installation = true
 			opts.ensure_installed = {
 				"gopls",
-				"rust_analyzer",
 				"phpactor",
+				"clangd",
+				"rust_analyzer",
 				"ts_ls",
-				"eslint",
 				"lua_ls",
 
 				"htmx",
