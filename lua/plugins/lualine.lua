@@ -102,7 +102,6 @@ return {
 		})
 
 		insert_left({
-			-- filesize component
 			"filesize",
 			cond = conditions.buffer_not_empty,
 			color = { fg = colors.text },
@@ -161,8 +160,8 @@ return {
 		})
 
 		insert_right({
-			"o:encoding", -- option component same as &encoding in viml
-			fmt = string.upper, -- I'm not sure why it's upper case either ;)
+			"o:encoding",
+			fmt = string.upper,
 			cond = conditions.hide_in_width,
 			color = { fg = colors.green },
 		})
@@ -170,7 +169,7 @@ return {
 		insert_right({
 			"fileformat",
 			fmt = string.upper,
-			icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+			icons_enabled = false,
 			color = { fg = colors.green },
 		})
 
@@ -182,7 +181,6 @@ return {
 
 		insert_right({
 			"diff",
-			-- Is it me or the symbol for modified us really weird
 			symbols = { added = " ", modified = "󰝤 ", removed = " " },
 			cond = conditions.hide_in_width,
 			diff_color = {

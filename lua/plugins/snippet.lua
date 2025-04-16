@@ -8,7 +8,6 @@ return {
 	build = "make install_jsregexp",
 	config = function()
 		local snippet_loader = require("luasnip.loaders.from_vscode")
-
 		snippet_loader.lazy_load()
 	end,
 }

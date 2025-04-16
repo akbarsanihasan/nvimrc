@@ -1,13 +1,17 @@
 local M = {}
 
-M.table_include = function(tbl, item)
-	for _, table_item in ipairs(tbl) do
-		if item == table_item then
-			return true
-		end
+M.return_call = function(mix, ty)
+	if type(mix) == ty then
+		return mix
 	end
 
-	return false
+	if type(mix) == "function" then
+		return mix()
+	end
+
+	vim.notify(string.format("Invalid provider type for server '%s': %s", mix, type(mix)), vim.log.levels.ERROR)
+
+	return nil
 end
 
 M.require_all = function(path, callback)

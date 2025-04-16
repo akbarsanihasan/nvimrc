@@ -1,55 +1,34 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		opts = {
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
-				},
+	"williamboman/mason.nvim",
+	init = function()
+		vim.diagnostic.config({
+			virtual_text = true,
+			signs = true,
+			update_in_insert = true,
+			hint = {
+				text = "󰛨",
+				texthl = "DiagnosticSignHint",
 			},
-		},
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-		},
-		opts = function()
-			local opts = {}
-
-			opts.automatic_installation = true
-			opts.ensure_installed = {
-				"gopls",
-				"phpactor",
-				"clangd",
-				"rust_analyzer",
-				"ts_ls",
-				"lua_ls",
-
-				"htmx",
-				"html",
-				"cssls",
-				"tailwindcss",
-			}
-
-			return opts
-		end,
-	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"nvimtools/none-ls.nvim",
-		},
-		opts = {
-			automatic_installation = true,
-			ensure_installed = {
-				"prettier",
-				"php-cs-fixer",
-				"stylua",
-				"shfmt",
+			info = {
+				text = "󰌵",
+				texthl = "DiagnosticSignInfo",
+			},
+			warn = {
+				text = "󱧡",
+				texthl = "DiagnosticSignWarn",
+			},
+			error = {
+				text = "",
+				texthl = "DiagnosticSignError",
+			},
+		})
+	end,
+	opts = {
+		ui = {
+			icons = {
+				package_installed = "✓",
+				package_pending = "➜",
+				package_uninstalled = "✗",
 			},
 		},
 	},

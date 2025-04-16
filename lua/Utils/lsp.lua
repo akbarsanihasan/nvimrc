@@ -29,7 +29,7 @@ M.on_attach = function(_, bufnr)
 	vim.keymap.set("n", "[d", function()
 		vim.diagnostic.jump({ count = -1, float = true })
 	end, opts)
-	vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+	vim.keymap.set("n", "<leader>vrs", ":LspRestart<CR>", opts)
 end
 
 return M

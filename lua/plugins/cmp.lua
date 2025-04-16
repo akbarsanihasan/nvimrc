@@ -7,38 +7,11 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 	},
 	event = { "InsertEnter", "CmdlineEnter" },
-	config = function()
+	opts = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		local CMP_KINDS = {
-			Text = "󰉿",
-			Method = "󰆧",
-			Function = "󰊕",
-			Constructor = "",
-			Field = "󰜢",
-			Variable = "󰀫",
-			Class = "󰠱",
-			Interface = "",
-			Module = "",
-			Property = "󰜢",
-			Unit = "󰑭",
-			Value = "󰎠",
-			Enum = "",
-			Keyword = "󰌋",
-			Snippet = "",
-			Color = "󰏘",
-			File = "󰈙",
-			Reference = "󰈇",
-			Folder = "󰉋",
-			EnumMember = "",
-			Constant = "󰏿",
-			Struct = "󰙅",
-			Event = "",
-			Operator = "󰆕",
-			TypeParameter = "",
-		}
 
-		cmp.setup({
+		return {
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
@@ -47,7 +20,6 @@ return {
 			formatting = {
 				fields = { "abbr", "kind" },
 				format = function(_, vim_item)
-					vim_item.kind = (CMP_KINDS[vim_item.kind] .. "  " .. vim_item.kind) or ""
 					vim_item.symbol = vim_item.kind
 					return vim_item
 				end,
@@ -68,6 +40,6 @@ return {
 				{ name = "path" },
 				{ name = "buffer" },
 			}),
-		})
+		}
 	end,
 }
