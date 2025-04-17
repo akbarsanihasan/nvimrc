@@ -43,6 +43,7 @@ return {
                 "php-cs-fixer",
                 "stylua",
                 "shellharden",
+                "shfmt",
             },
             handlers = {
                 function(source, methods)
