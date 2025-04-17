@@ -1,5 +1,4 @@
 return {
-	-- snippet
 	"L3MON4D3/LuaSnip",
 	dependencies = {
 		"hrsh7th/nvim-cmp",

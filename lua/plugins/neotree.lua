@@ -5,7 +5,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
-	event = { "BufEnter" },
 	keys = {
 		{ "<leader>pv", ":Neotree toggle<CR>", silent = true, noremap = true },
 	},
@@ -68,7 +67,7 @@ return {
 			},
 		},
 		window = {
-			position = "current",
+			position = "left",
 			mappings = {
 				["t"] = {
 					"toggle_node",

@@ -1,7 +1,5 @@
 return {
 	"folke/trouble.nvim",
-	opts = {},
-	cmd = "Trouble",
 	keys = {
 		{
 			"<leader>tt",
@@ -13,6 +11,7 @@ return {
 			function()
 				require("trouble").next({ skip_groups = true, jump = true })
 			end,
+			silent = true,
 		},
 
 		{
@@ -20,6 +19,7 @@ return {
 			function()
 				require("trouble").prev({ skip_groups = true, jump = true })
 			end,
+			silent = true,
 		},
 	},
 }

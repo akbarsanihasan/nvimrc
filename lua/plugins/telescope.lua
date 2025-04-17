@@ -57,9 +57,11 @@ return {
 			selection_caret = " ",
 			path_display = { "absolute" },
 			sorting_strategy = "ascending",
+			layout_strategy = "vertical",
 			layout_config = {
-				height = 0.8,
-				width = 0.7,
+				height = 0.6,
+				width = 0.4,
+				anchor = "N",
 				prompt_position = "top",
 			},
 			mappings = {

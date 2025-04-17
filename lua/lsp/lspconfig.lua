@@ -12,7 +12,7 @@ return {
 		local providers = helpers.require_all("lsp/providers")
 		local provider_names = vim.tbl_keys(providers)
 
-		local opts = {
+		mason_lspconfig.setup({
 			automatic_installation = true,
 			ensure_installed = {
 				"gopls",
@@ -49,8 +49,6 @@ return {
 					lspconfig[provider_name].setup(server_config)
 				end,
 			},
-		}
-
-		mason_lspconfig.setup(opts)
+		})
 	end,
 }

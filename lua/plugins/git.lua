@@ -14,13 +14,11 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
-		init = function()
-			local opts = { silent = true, noremap = true }
-
-			vim.keymap.set("n", "<leader>ga", ":Git<CR>", opts)
-			vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", opts)
-			vim.keymap.set("n", "gf", "diffget //2<CR>", opts)
-			vim.keymap.set("n", "gj", "diffget //3<CR>", opts)
-		end,
+		keys = {
+			{ "<leader>ga", ":Git<CR>", silent = true, noremap = true },
+			{ "<leader>gb", ":Git blame<CR>", silent = true, noremap = true },
+			{ "gf", "diffget //2<CR>", silent = true, noremap = true },
+			{ "gj", "diffget //3<CR>", silent = true, noremap = true },
+		},
 	},
 }
