@@ -1,0 +1,13 @@
+{
+    "name": "friendly-snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": [
+                    "php"
+                ],
+                "path": "./snippets/php.json"
+            }
+        ]
+    }
+}
