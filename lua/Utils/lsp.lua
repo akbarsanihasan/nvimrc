@@ -22,13 +22,13 @@ M.on_attach = function(client, bufnr)
         filter = nil,
     }
 
-    if client:supports_method("textDocument/formatting") then
-        if client.name == "null-ls" then
-            format_opts.filter = function(clt)
-                return clt.name == "null-ls"
-            end
+    if client.name == "null-ls" then
+        format_opts.filter = function(clt)
+            return clt.name == "null-ls"
         end
+    end
 
+    if client:supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
@@ -39,6 +39,9 @@ M.on_attach = function(client, bufnr)
         })
     end
 
+    vim.keymap.set("n", "<leader>fr", function()
+        vim.lsp.buf.format(format_opts)
+    end)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "<leader>vdd", vim.diagnostic.open_float, opts)
