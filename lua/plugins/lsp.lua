@@ -3,7 +3,7 @@ return {
         "williamboman/mason.nvim",
         dependencies = {
             "hrsh7th/nvim-cmp",
-            "folke/trouble.nvim"
+            "folke/trouble.nvim",
         },
         init = function()
             vim.diagnostic.config({
@@ -75,7 +75,7 @@ return {
                         if vim.tbl_contains(provider_names, provider_name) then
                             server_config = vim.tbl_deep_extend(
                                 "force",
-                                {},
+                                server_config,
                                 default_server_config,
                                 helpers.return_call(providers[provider_name], "table")
                             )
@@ -101,15 +101,18 @@ return {
             local helpers = require("Utils.helpers")
             local sources = helpers.require_all("LSP/sources")
             local source_names = vim.tbl_keys(sources)
+            local lsp_utils = require("Utils.lsp")
 
             none_ls.setup({
-                on_attach = require("Utils.lsp").on_attach,
+                on_attach = lsp_utils.on_attach,
             })
             mason_null_ls.setup({
                 automatic_installation = true,
                 ensure_installed = {
                     "prettier",
                     "php-cs-fixer",
+                    "shfmt",
+                    "shellharden",
                 },
                 handlers = {
                     function(source, methods)
@@ -128,5 +131,5 @@ return {
                 },
             })
         end,
-    }
+    },
 }
