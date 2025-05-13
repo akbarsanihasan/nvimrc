@@ -1,6 +1,6 @@
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         dependencies = {
             "hrsh7th/nvim-cmp",
             "folke/trouble.nvim",
@@ -38,8 +38,8 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
+            "mason-org/mason.nvim",
+            "mason-org/mason-lspconfig.nvim",
         },
         config = function()
             local lspconfig = require("lspconfig")
@@ -92,7 +92,7 @@ return {
     {
         "nvimtools/none-ls.nvim",
         dependencies = {
-            "williamboman/mason.nvim",
+            "mason-org/mason.nvim",
             "jay-babu/mason-null-ls.nvim",
         },
         config = function()
