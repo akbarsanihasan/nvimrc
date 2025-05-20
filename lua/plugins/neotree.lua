@@ -6,7 +6,7 @@ return {
         "MunifTanjim/nui.nvim",
     },
     keys = {
-        { "<leader>tv", ":Neotree toggle<CR>", silent = true, noremap = true },
+        { "<leader>ts", ":Neotree toggle<CR>", silent = true, noremap = true },
     },
     init = function()
         vim.g.netrw_browse_split = 0
