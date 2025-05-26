@@ -17,19 +17,19 @@ return {
     end,
     opts = {
         sort_function = function(a, b)
-            if a.type == b.type then
-                if a.ext == nil or b.ext == nil then
-                    return a.path < b.path
-                end
-
-                if a.ext == b.ext then
-                    return a.exts < b.exts
-                end
-
-                return a.ext < b.ext
+            if not (a.type == b.type) then
+                return a.type < b.type
             end
 
-            return a.type < b.type
+            if (not a.exts) or (not b.exts) then
+                return a.path < b.path
+            end
+
+            if not (a.exts == b.exts) then
+                return a.exts < b.exts
+            end
+
+            return a.name < b.name
         end,
         default_component_configs = {
             indent = {
