@@ -9,9 +9,9 @@ return {
 
         return {
             { "<C-p>",      builtin.find_files, silent = true, noremap = true },
-            { "<leader>pf", builtin.git_files,  silent = true, noremap = true },
+            { "<leader>of", builtin.git_files,  silent = true, noremap = true },
             {
-                "<leader>ph",
+                "<leader>oh",
                 function()
                     builtin.find_files({
                         find_command = {
@@ -31,7 +31,7 @@ return {
                 noremap = true,
             },
             {
-                "<leader>ps",
+                "<leader>os",
                 function()
                     builtin.live_grep({ hidden = true })
                 end,
@@ -39,7 +39,7 @@ return {
                 noremap = true
             },
             {
-                "<leader>pws",
+                "<leader>ows",
                 function()
                     local word = vim.fn.expand("<cword>")
                     builtin.grep_string({ search = word })
@@ -48,7 +48,7 @@ return {
                 noremap = true,
             },
             {
-                "<leader>pWs",
+                "<leader>oWs",
                 function()
                     local word = vim.fn.expand("<cWORD>")
                     builtin.grep_string({ search = word })
