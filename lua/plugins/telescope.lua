@@ -7,17 +7,31 @@ return {
     keys = function()
         local builtin = require("telescope.builtin")
 
+        pickers = {
+            find_files = {
+                follow = true,
+            },
+            live_grep = {
+                hidden = true,
+            }
+        }
         return {
-            { "<C-p>",      builtin.find_files, silent = true, noremap = true },
-            { "<leader>of", builtin.git_files,  silent = true, noremap = true },
+            {
+                "<C-p>",
+                function()
+                    builtin.find_files({ follow = true })
+                end,
+                silent = true,
+                noremap = true
+            },
             {
                 "<leader>oh",
                 function()
                     builtin.find_files({
+                        hidden = true,
                         find_command = {
                             "rg",
                             "--files",
-                            "--hidden",
                             "--glob",
                             "!**/.git/*",
                             "--glob",
@@ -39,22 +53,12 @@ return {
                 noremap = true
             },
             {
-                "<leader>ows",
+                "<leader>og",
                 function()
-                    local word = vim.fn.expand("<cword>")
-                    builtin.grep_string({ search = word })
+                    builtin.git_files({ hidden = true })
                 end,
                 silent = true,
-                noremap = true,
-            },
-            {
-                "<leader>oWs",
-                function()
-                    local word = vim.fn.expand("<cWORD>")
-                    builtin.grep_string({ search = word })
-                end,
-                silent = true,
-                noremap = true,
+                noremap = true
             },
         }
     end,

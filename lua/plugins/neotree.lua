@@ -59,7 +59,7 @@ return {
             },
         },
         window = {
-            position = "left",
+            position = "current",
             mappings = {
                 ["t"] = {
                     "toggle_node",
@@ -75,6 +75,22 @@ return {
             hijack_netrw_behavior = "open_current",
             group_empty_dirs = false,
             use_libuv_file_watcher = false,
+            filtered_items = {
+                visible = false,
+                hide_dotfiles = true,
+                hide_gitignored = true,
+                hide_hidden = true,
+                hide_by_name = {
+                    "node_modules"
+                },
+                always_show = {
+                    ".gitignore",
+                },
+                never_show = {
+                    ".trash",
+                    ".git",
+                },
+            },
             follow_current_file = {
                 enabled = true,
                 leave_dirs_open = false,
