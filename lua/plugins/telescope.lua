@@ -7,14 +7,6 @@ return {
     keys = function()
         local builtin = require("telescope.builtin")
 
-        pickers = {
-            find_files = {
-                follow = true,
-            },
-            live_grep = {
-                hidden = true,
-            }
-        }
         return {
             {
                 "<C-p>",
@@ -27,25 +19,13 @@ return {
             {
                 "<leader>oh",
                 function()
-                    builtin.find_files({
-                        hidden = true,
-                        find_command = {
-                            "rg",
-                            "--files",
-                            "--glob",
-                            "!**/.git/*",
-                            "--glob",
-                            "!**/vendor/*",
-                            "--glob",
-                            "!**node_modules/*",
-                        },
-                    })
+                    builtin.find_files({ hidden = true, })
                 end,
                 silent = true,
                 noremap = true,
             },
             {
-                "<leader>os",
+                "<leader>ow",
                 function()
                     builtin.live_grep({ hidden = true })
                 end,

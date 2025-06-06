@@ -13,7 +13,6 @@ return {
             end,
             silent = true,
         },
-
         {
             "[t",
             function()

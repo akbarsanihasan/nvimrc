@@ -1,6 +1,5 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
 ---@diagnostic disable-next-line: undefined-field
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     print("Installing lazy neovim plugin manager...")
@@ -22,7 +21,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 
     print("Lazy plugin manager installed...")
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({

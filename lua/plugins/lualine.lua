@@ -19,6 +19,7 @@ return {
             disabled_filetypes = {
                 statusline = {
                     "neo-tree",
+                    "neo-tree-popup",
                     "TelescopePrompt",
                     "lazy",
                     "undotree",
@@ -28,6 +29,7 @@ return {
                 },
                 winbar = {
                     "neo-tree",
+                    "neo-tree-popup",
                     "TelescopePrompt",
                     "lazy",
                     "undotree",
