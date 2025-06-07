@@ -1,7 +1,7 @@
 return {
-    "mason-org/mason.nvim",
+    "neovim/nvim-lspconfig",
     dependencies = {
-        "neovim/nvim-lspconfig",
+        "mason-org/mason.nvim",
         "mason-org/mason-lspconfig.nvim",
         "nvimtools/none-ls.nvim",
         "nvimtools/none-ls-extras.nvim",
@@ -28,10 +28,89 @@ return {
         })
     end,
     config = function()
+        local helpers = require("Utils.helpers")
         local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
         local none_ls = require("null-ls")
         local mason_null_ls = require("mason-null-ls")
+
+        mason.setup({
+            ui = {
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗",
+                },
+            },
+        })
+
+        local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        local default_lspconfig = {
+            require_cwd = false,
+            single_file_support = true,
+            capabilities = vim.tbl_deep_extend(
+                "force",
+                {},
+                vim.lsp.protocol.make_client_capabilities(),
+                cmp_nvim_lsp.default_capabilities()
+            ),
+        }
+        local lspconfig = helpers.require_all("LSPConfig")
+        for server, module in pairs(lspconfig) do
+            local config = vim.tbl_deep_extend("keep", {}, default_lspconfig, module)
+            if type(module) == "table" then
+                vim.lsp.config(server, config)
+            end
+        end
+
+        local lsp_server = {
+            "gopls",
+            "phpactor",
+            "clangd",
+            "rust_analyzer",
+            "ts_ls",
+            "lua_ls",
+            "html",
+            "cssls",
+            "htmx",
+        }
+        mason_lspconfig.setup({
+            automatic_enable = true,
+            automatic_installation = true,
+            ensure_installed = lsp_server,
+        })
+
+        local null_ls_server = {
+            "prettier",
+            "php-cs-fixer",
+            "shfmt",
+            "shellharden",
+        }
+        none_ls.setup({
+            update_in_insert = false,
+        })
+        mason_null_ls.setup({
+            automatic_installation = true,
+            ensure_installed = null_ls_server,
+            handlers = {
+                function(source, methods)
+                    if methods == nil or vim.tbl_isempty(methods) then
+                        return
+                    end
+
+                    for _, method in ipairs(methods) do
+                        local configs = helpers.require_all("LSPConfig/" .. method)
+                        local servers = vim.tbl_keys(configs)
+
+                        if vim.tbl_contains(servers, source) then
+                            none_ls.register(none_ls.builtins[method][source].with(configs[source]))
+                        else
+                            none_ls.register(none_ls.builtins[method][source])
+                        end
+                    end
+                end,
+            },
+        })
 
         local code_format = function(bufnr)
             vim.lsp.buf.format({
@@ -86,64 +165,6 @@ return {
                     end,
                 })
             end,
-        })
-
-        vim.lsp.config("lua_ls", {
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim", "it", "describe", "before_each", "after_each" },
-                    },
-                    workspace = {
-                        library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.stdpath("config") .. "/lua"] = true,
-                        },
-                    },
-                },
-            },
-        })
-
-        none_ls.setup({
-            update_in_insert = false,
-        })
-        mason.setup({
-            ui = {
-                icons = {
-                    package_installed = "✓",
-                    package_pending = "➜",
-                    package_uninstalled = "✗",
-                },
-            },
-        })
-
-        local lsp_server = {
-            "gopls",
-            "phpactor",
-            "clangd",
-            "rust_analyzer",
-            "ts_ls",
-            "lua_ls",
-            "html",
-            "cssls",
-            "htmx",
-        }
-        mason_lspconfig.setup({
-            automatic_enable = true,
-            automatic_installation = true,
-            ensure_installed = lsp_server,
-        })
-
-        local null_ls_server = {
-            "prettier",
-            "php-cs-fixer",
-            "shfmt",
-            "shellharden",
-        }
-        mason_null_ls.setup({
-            automatic_installation = true,
-            ensure_installed = null_ls_server,
-            handlers = {},
         })
     end,
 }
