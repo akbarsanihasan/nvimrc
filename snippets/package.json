@@ -3,10 +3,8 @@
     "contributes": {
         "snippets": [
             {
-                "language": [
-                    "php"
-                ],
-                "path": "./Snippets/php.json"
+                "language": "php",
+                "path": "./php.json"
             }
         ]
     }

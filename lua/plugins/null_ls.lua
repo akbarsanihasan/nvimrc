@@ -28,7 +28,7 @@ return {
                     end
 
                     for _, method in ipairs(methods) do
-                        local configs = helpers.require_all("LSPConfig/" .. method)
+                        local configs = helpers.require_all("serverconfig/" .. method)
                         local servers = vim.tbl_keys(configs)
 
                         if not vim.tbl_contains(servers, source) then

@@ -72,52 +72,20 @@ autocmd("TextYankPost", {
     end,
 })
 
----@param client vim.lsp.Client
----@param buffer integer
-local format_code = function(client, buffer)
-    local clients = vim.lsp.get_clients({ bufnr = buffer })
-    local client_names = vim.tbl_map(function(clt)
-        return clt.name
-    end, clients)
-
-    vim.api.nvim_set_hl(0, "ClientName", { bold = true, fg = "Darkblue" })
-    if not vim.tbl_contains(client_names, "null-ls") then
-        vim.api.nvim_echo({
-            { "✔ ", "Constant" },
-            { "Formatting ", "NonText" },
-            { client.name, "Title" },
-        }, false, {})
-    end
-
-    local format_opt = {
-        timeout_ms = 2000,
-        async = false,
-        filter = function(clt)
-            if not vim.tbl_contains(client_names, "null-ls") then
-                return true
-            end
-
-            return clt.name == "null-ls"
-        end,
-    }
-
-    vim.lsp.buf.format(format_opt)
-end
-
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
     callback = function(event)
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
         local keymap_opts = {
             noremap = true,
             silent = true,
             buffer = event.buf,
         }
 
-        if client == nil then
-            vim.notify_once("No Lsp attached")
-            return
-        end
+        local format_opts = {
+            timeout_ms = 2000,
+            async = false,
+            buffer = event.buf,
+        }
 
         vim.keymap.set("n", "K", vim.lsp.buf.hover, keymap_opts)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, keymap_opts)
@@ -133,16 +101,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, keymap_opts)
         vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, keymap_opts)
 
-        if client:supports_method("textDocument/formatting") then
-            vim.keymap.set("n", "<leader>vfc", function()
-                format_code(client, event.buf)
-            end, keymap_opts)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = vim.api.nvim_create_augroup("user_lsp_format", { clear = true }),
-                callback = function()
-                    format_code(client, event.buf)
-                end,
-            })
-        end
+        vim.keymap.set("n", "<leader>vfc", function()
+            vim.lsp.buf.format(format_opts)
+        end, keymap_opts)
+
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("user_lsp_format", { clear = true }),
+            callback = function()
+                vim.lsp.buf.format(format_opts)
+            end,
+        })
     end,
 })

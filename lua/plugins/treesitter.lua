@@ -7,33 +7,16 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
     },
     opts = {
-        auto_install = true,
+        auto_install = false,
+        ensure_installed = { "c", "rust", "go", "php", "javascript", "typescript", "lua", "blade", "html", "css" },
+        ignore_install = { 'org' },
         indent = { enable = true },
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,
         },
-        ensure_installed = {
-            "c",
-            "rust",
-            "go",
-            "php",
-            "javascript",
-            "typescript",
-            "lua",
-
-            "blade",
-            "html",
-            "css",
-        },
         incremental_selection = {
             enable = true,
-            keymaps = {
-                init_selection = "<C-space>",
-                node_incremental = "<C-space>",
-                node_decremental = "<bs>",
-                scope_incremental = false,
-            },
         },
     },
     config = function(_, opts)

@@ -8,7 +8,7 @@ return {
         local helpers = require("Utils.helpers")
         local mason_lspconfig = require("mason-lspconfig")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local servers = helpers.require_all("LSPConfig")
+        local servers = helpers.require_all("serverconfig")
 
         vim.lsp.config("*", {
             require_cwd = false,
