@@ -2,18 +2,26 @@ local M = {}
 
 ---@param path string
 M.require_all = function(path)
-	local modules = {}
-	local path_files = vim.fn.globpath(vim.fn.stdpath("config") .. "/lua/" .. path, "*.lua", false, true)
+    local modules = {}
+    local file_paths = vim.fn.globpath(
+        vim.fn.stdpath("config") .. "/lua/" .. path,
+        "*.lua",
+        false,
+        true
+    )
 
-	for _, file in ipairs(path_files) do
-		local file_path = file:match("lua/(.-)%.lua$")
-		local basename = file_path:match("[^/]+$")
-		local module = require(file_path:gsub("/", "."))
+    for _, file_path in ipairs(file_paths) do
+        if vim.uv.fs_stat(file_path) then
+            local basename = vim.fs.basename(file_path)
+            local filename = basename:match("(.-)%.lua$")
+            local modulepath = path:gsub("/", ".") .. "." .. filename
+            local module = require(modulepath)
 
-		modules[basename] = module
-	end
+            modules[filename] = module
+        end
+    end
 
-	return modules
+    return modules
 end
 
 return M

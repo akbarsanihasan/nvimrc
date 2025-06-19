@@ -26,6 +26,7 @@ return {
                     "fugitive",
                     "mason",
                     "diff",
+                    "noice",
                 },
                 winbar = {
                     "neo-tree",
@@ -36,6 +37,7 @@ return {
                     "fugitive",
                     "mason",
                     "diff",
+                    "noice",
                 },
             },
         },

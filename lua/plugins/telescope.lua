@@ -14,12 +14,12 @@ return {
                     builtin.find_files({ follow = true })
                 end,
                 silent = true,
-                noremap = true
+                noremap = true,
             },
             {
                 "<leader>oh",
                 function()
-                    builtin.find_files({ hidden = true, })
+                    builtin.find_files({ hidden = true })
                 end,
                 silent = true,
                 noremap = true,
@@ -30,7 +30,7 @@ return {
                     builtin.live_grep({ hidden = true })
                 end,
                 silent = true,
-                noremap = true
+                noremap = true,
             },
             {
                 "<leader>og",
@@ -38,7 +38,7 @@ return {
                     builtin.git_files({ hidden = true })
                 end,
                 silent = true,
-                noremap = true
+                noremap = true,
             },
         }
     end,
@@ -48,10 +48,7 @@ return {
             selection_caret = " ",
             path_display = { "absolute" },
             sorting_strategy = "ascending",
-            layout_strategy = "vertical",
             layout_config = {
-                height = 0.6,
-                width = 0.4,
                 anchor = "N",
                 prompt_position = "top",
             },

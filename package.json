@@ -6,7 +6,7 @@
                 "language": [
                     "php"
                 ],
-                "path": "./snippets/php.json"
+                "path": "./Snippets/php.json"
             }
         ]
     }
