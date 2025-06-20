@@ -10,14 +10,13 @@ return {
         local mason_null_ls = require("mason-null-ls")
 
         none_ls.setup({
-            update_in_insert = true,
+            update_in_insert = false,
         })
         mason_null_ls.setup({
             automatic_installation = true,
             ensure_installed = {
                 "prettier",
                 "clang-format",
-                "php-cs-fixer",
                 "shfmt",
                 "shellharden",
             },

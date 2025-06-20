@@ -1,6 +1,6 @@
 return {
+    require_cwd = false,
     single_file_support = true,
-    root_dir = function(fname)
-        return require("lspconfig.util").root_pattern("composer.json", ".git")(fname) or vim.fn.getcwd()
-    end,
+    workspace_required = false,
+    root_dir = vim.fn.getcwd(),
 }

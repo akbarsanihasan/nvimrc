@@ -3,6 +3,7 @@ return {
     dependencies = {
         "mason-org/mason.nvim",
         "mason-org/mason-lspconfig.nvim",
+        "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
         local helpers = require("Utils.helpers")
@@ -11,7 +12,6 @@ return {
         local servers = helpers.require_all("serverconfig")
 
         vim.lsp.config("*", {
-            require_cwd = false,
             single_file_support = true,
             capabilities = vim.tbl_deep_extend(
                 "force",
@@ -37,7 +37,6 @@ return {
                 "lua_ls",
                 "html",
                 "cssls",
-                "htmx",
             },
         })
     end,

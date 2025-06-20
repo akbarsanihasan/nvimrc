@@ -35,7 +35,7 @@ vim.opt.updatetime = 50
 vim.opt.autoread = true
 
 vim.diagnostic.config({
-    update_in_insert = true,
+    update_in_insert = false,
 })
 vim.diagnostic.config({
     virtual_text = true,
