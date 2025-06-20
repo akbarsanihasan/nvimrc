@@ -1,16 +1,16 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    main = "nvim-treesitter.configs",
     build = ":TSUpdate",
+    lazy = false,
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
     },
     opts = {
-        auto_install = false,
-        ensure_installed = { "c", "rust", "go", "php", "javascript", "typescript", "lua", "blade", "html", "css" },
+        auto_install = true,
         ignore_install = { 'org' },
         indent = { enable = true },
+        with_sync = true,
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,
