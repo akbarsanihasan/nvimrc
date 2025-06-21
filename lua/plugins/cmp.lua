@@ -4,20 +4,12 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
-        "saadparwaiz1/cmp_luasnip",
-        "L3MON4D3/LuaSnip"
     },
     event = { "InsertEnter", "CmdlineEnter" },
     opts = function()
         local cmp = require("cmp")
-        local luasnip = require("luasnip")
 
         return {
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end,
-            },
             formatting = {
                 fields = { "abbr", "kind" },
                 format = function(_, vim_item)
@@ -36,7 +28,6 @@ return {
                 ["<Down>"] = cmp.mapping.select_next_item({ behavior = "select" }),
             },
             sources = cmp.config.sources({
-                { name = "luasnip" },
                 { name = "nvim_lsp" },
                 { name = "path" },
                 { name = "buffer" },

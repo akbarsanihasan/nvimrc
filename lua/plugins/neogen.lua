@@ -7,7 +7,4 @@ return {
         { "<leader>ngf", ":Neogen func<CR>",  silent = true },
         { "<leader>ngt", ":Neogen type<CR>",  silent = true },
     },
-    opts = {
-        snippet_engine = "luasnip",
-    },
 }

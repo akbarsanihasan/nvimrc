@@ -11,14 +11,12 @@ M.require_all = function(path)
     )
 
     for _, file_path in ipairs(file_paths) do
-        if vim.uv.fs_stat(file_path) then
-            local basename = vim.fs.basename(file_path)
-            local filename = basename:match("(.-)%.lua$")
-            local modulepath = path:gsub("/", ".") .. "." .. filename
-            local module = require(modulepath)
+        local basename = vim.fs.basename(file_path)
+        local filename = basename:match("(.-)%.lua$")
+        local modulepath = path:gsub("/", ".") .. "." .. filename
+        local module = require(modulepath)
 
-            modules[filename] = module
-        end
+        modules[filename] = module
     end
 
     return modules

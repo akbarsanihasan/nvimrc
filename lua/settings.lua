@@ -56,6 +56,13 @@ vim.diagnostic.config({
     },
 })
 
+vim.filetype.add({
+    pattern = {
+        [".*%.blade%.php"] = "blade",
+    },
+})
+
+
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
