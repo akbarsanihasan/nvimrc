@@ -8,8 +8,17 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     opts = function()
         local cmp = require("cmp")
-
         return {
+            sources = cmp.config.sources({
+                { name = "nvim_lsp" },
+                { name = "path" },
+                { name = "buffer" },
+            }),
+            snippet = {
+                expand = function(args)
+                    vim.snippet.expand(args.body)
+                end,
+            },
             formatting = {
                 fields = { "abbr", "kind" },
                 format = function(_, vim_item)
@@ -27,11 +36,6 @@ return {
                 ["<Up>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
                 ["<Down>"] = cmp.mapping.select_next_item({ behavior = "select" }),
             },
-            sources = cmp.config.sources({
-                { name = "nvim_lsp" },
-                { name = "path" },
-                { name = "buffer" },
-            }),
         }
     end,
 }
