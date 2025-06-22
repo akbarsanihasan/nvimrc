@@ -1,41 +1,40 @@
 return {
-    "hrsh7th/nvim-cmp",
+    'saghen/blink.cmp',
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
+        'L3MON4D3/LuaSnip'
     },
+    opts_extend = { "sources.default" },
     event = { "InsertEnter", "CmdlineEnter" },
-    opts = function()
-        local cmp = require("cmp")
-        return {
-            sources = cmp.config.sources({
-                { name = "nvim_lsp" },
-                { name = "path" },
-                { name = "buffer" },
-            }),
-            snippet = {
-                expand = function(args)
-                    vim.snippet.expand(args.body)
-                end,
+    opts = {
+        keymap = { preset = 'default' },
+        fuzzy = { implementation = "lua" },
+        signature = { enabled = false },
+        cmdline = { enabled = false },
+        snippets = { preset = 'luasnip' },
+        sources = {
+            default = { 'lsp', 'path', 'snippets', 'buffer' },
+            per_filetype = {
+                org = { 'orgmode' }
             },
-            formatting = {
-                fields = { "abbr", "kind" },
-                format = function(_, vim_item)
-                    vim_item.symbol = vim_item.kind
-                    return vim_item
-                end,
+            providers = {
+                orgmode = {
+                    name = 'Orgmode',
+                    module = 'orgmode.org.autocompletion.blink',
+                    fallbacks = { 'buffer' },
+                },
             },
-            mapping = {
-                ["<C-y>"] = cmp.mapping.confirm({ select = false }),
-                ["<CR>"] = cmp.mapping.confirm({ select = false }),
-                ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
-                ["<C-n>"] = cmp.mapping.select_next_item({ behavior = "select" }),
-                ["<C-e>"] = cmp.mapping.abort(),
-                ["<C-Space>"] = cmp.mapping.complete(),
-                ["<Up>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
-                ["<Down>"] = cmp.mapping.select_next_item({ behavior = "select" }),
-            },
-        }
-    end,
+        },
+        completion = {
+            documentation = { auto_show = true },
+            list = { selection = { preselect = false, auto_insert = false } },
+            menu = {
+                draw = {
+                    columns = {
+                        { "label", "label_description", gap = 1 },
+                        { "kind",  gap = 1 }
+                    },
+                }
+            }
+        },
+    },
 }

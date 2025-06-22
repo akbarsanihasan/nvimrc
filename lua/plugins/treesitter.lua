@@ -4,7 +4,8 @@ return {
         build = ":TSUpdate",
         main = "nvim-treesitter.configs",
         opts = {
-            ignore_install = { 'org' },
+            auto_install = true,
+            sync_install = true,
             indent = {
                 enable = true
             },
@@ -12,6 +13,18 @@ return {
                 enable = true,
                 additional_vim_regex_highlighting = false,
             },
+            ensure_installed = {
+                "go",
+                "php",
+                "javascript",
+                "typescript",
+                "c",
+                "rust",
+                "lua",
+                "bash",
+                "html",
+                "css",
+            }
         },
         init = function()
             local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
